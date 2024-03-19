@@ -61,6 +61,9 @@ docker run -d --rm -p 5432:5432 --name nwdbc -e POSTGRES_PASSWORD=northwind -d n
 cd ~/{project_directory}
 
 python3 main.py
+
+# run script with csv export
+python3 main.py -csv
 ```
 - check the generated graphs in the plots catalogue (jpg)
 

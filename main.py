@@ -1,7 +1,10 @@
+import sys
 import pandas as pd
 import matplotlib.pylab as plt
 import colors
 from db.sqlalhemy_db import DatabaseConnection
+
+print(sys.argv)
 
 # params
 hostname = 'localhost'
@@ -19,6 +22,11 @@ db_connection = DatabaseConnection(database_uri)
 # get data from db to DataFrame, close connection
 query = "SELECT * FROM customers"
 df = pd.read_sql_query(query, db_connection.engine)
+
+if '-csv' in sys.argv:
+  df.to_csv('./csv/nw-customers.csv', index=False)
+  colors.prGreen("data saved to ./csv/nw-customers.csv")
+
 
 # Data Analisys
 top_cities = df['city'].value_counts().head(5)
